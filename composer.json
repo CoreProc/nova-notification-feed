@@ -1,0 +1,35 @@
+{
+    "name": "coreproc/nova-notification-feed",
+    "description": "A Laravel Nova package that adds a notification feed in your Nova app.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "broadcast",
+        "notifications",
+        "sidebar",
+        "bell",
+        "notice board"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "pusher/pusher-php-server": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Coreproc\\NovaNotificationFeed\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Coreproc\\NovaNotificationFeed\\NovaNotificationFeedServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
