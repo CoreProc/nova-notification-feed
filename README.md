@@ -16,11 +16,20 @@ You can install the package in to a Laravel app that uses [Nova](https://nova.la
 composer require coreproc/nova-notification-feed
 ```
 
-This package makes use of Laravel's database notification feature and [Pusher](https://pusher.com) to receive and broadcast notifications.
+This package makes use of Laravel's database notification feature and [Nova Echo](https://github.com/CoreProc/nova-echo) to receive and broadcast notifications.
 
-Make sure that you already have a Pusher project set up and prepare your Laravel project to use it for broadcasting notifications.
+By using [Nova Echo](https://github.com/CoreProc/nova-echo), we have a readily configured Laravel Echo instance in our JS.
 
-Run the following to get the `notifications` table if you have not done so already:
+Here are the suggested options for broadcasting/receiving using websockets:
+- [Pusher](https://pusher.com)
+- [Laravel Websockets](https://docs.beyondco.de/laravel-websockets/)
+- [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server)
+
+Make sure that you already have any of these options set up and prepare your Laravel project to use it for broadcasting notifications. 
+
+You can find instructions about broadcasting in Laravel using the [official documentation](https://laravel.com/docs/5.7/broadcasting).
+
+Follow the docs, make sure to run the following to get the `notifications` table if you have not done so already:
 
 ```
 php artisan notifications:table
@@ -44,12 +53,12 @@ PUSHER_APP_CLUSTER=xxx
 You will also need to ensure that you have added an authorization broadcast route in `routes/channels.php`:
 
 ```php
-Broadcast::channel('users.{id}', function ($user, $id) {
+Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int)$user->id === (int)$id;
 });
 ```
 
-The channel name will depend on your `User` model having the `Notifiable` trait. You can override the `receivesBroadcastNotificationsOn` to use a different channel name.
+Receiving notifications will depend on your `User` model having the `Notifiable` trait. You can add the `receivesBroadcastNotificationsOn` to use a different channel name instead of the user model's namespace.
 
 ```php
 class User extends Authenticatable
@@ -70,22 +79,33 @@ class User extends Authenticatable
 }
 ```
 
-Finally, once you have ensure that this is set up, you will also need to override Nova's `layout.blade.php`. Create a layout file in `resources/views/vendor/nova/layout.blade.php` and copy the contents from `vendor/laravel/nova/resources/views/layout.blade.php`.
+Finally, once you have ensured that this is set up, you will also need to override Nova's `layout.blade.php`. Create a layout file in `resources/views/vendor/nova/layout.blade.php` and copy the contents from `vendor/laravel/nova/resources/views/layout.blade.php`.
+
+Add these two lines to the layout template:
 
 ```
-cp vendor/laravel/nova/resources/views/layout.blade.php resources/views/vendor/nova/layout.blade.php
-```
+// file: resources/views/vendor/nova/layout.blade.php
 
-Add the following Vue component to the layout template right after the user dropdown section.
+<!DOCTYPE html>
+<html lang="en" class="h-full font-sans antialiased">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1280">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  
+  @include('nova-echo::meta') <!-- INCLUDE THIS LINE HERE -->
+  
+  <title>
+  
+  ...
+  
+  <dropdown class="ml-auto h-9 flex items-center dropdown-right">
+    @include('nova::partials.user')
+  </dropdown>
 
-```
-...
-<dropdown class="ml-auto h-9 flex items-center dropdown-right">
-  @include('nova::partials.user')
-</dropdown>
-
-@include('nova_notification_feed::notification_feed')
-...
+  @include('nova_notification_feed::notification_feed') <!-- AND THIS LINE HERE -->
+  
+  ...
 ```
 
 You should now be able to see the notification bell on the top right of your Nova UI.
@@ -161,14 +181,13 @@ class TestNotification extends Notification
 }
 ```
 
-Nova Notification Feed relies on having three variables passed in the `data` field of the notification entry: `level`, `message`, and `url`.
+Nova Notification Feed relies on having three variables passed in the `toArray()` method of the notification class: `level`, `message`, and `url`.
 
 Additionally, you can use the `NovaBroadcastMessage` class in the `toBroacast()` method to ensure that the format of the broadcast can be read by the frontend.
 
 ## Roadmap
 
 - Differentiate background color of a new notification
-- Support other drivers aside from Pusher
 - Better design?
 
 ## Changelog
