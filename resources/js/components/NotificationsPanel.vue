@@ -55,7 +55,7 @@
         })
       },
       listenForNotifications () {
-        window.Echo.private(this.broadcastOn)
+        window.userPrivateChannel
           .notification((notification) => {
             // Increment the unread count
             this.$emit('incrementUnreadCount')

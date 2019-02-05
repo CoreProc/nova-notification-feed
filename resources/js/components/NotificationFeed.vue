@@ -20,10 +20,6 @@
 </template>
 
 <script>
-  import Echo from 'laravel-echo'
-
-  window.Pusher = require('pusher-js')
-
   export default {
     name: 'NovaNotifications',
     props: [
@@ -53,21 +49,8 @@
       },
       incrementUnreadCount: function () {
         this.unreadCount += 1
-      },
-      instantiateEcho () {
-        window.Echo = new Echo({
-          broadcaster: 'pusher',
-          key: this.pusherKey,
-          cluster: this.pusherCluster,
-          encrypted: true
-        })
-      },
-    },
-    created () {
-      if (typeof window.Echo === 'undefined') {
-        this.instantiateEcho()
       }
-    },
+    }
   }
 </script>
 
