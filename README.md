@@ -4,7 +4,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/coreproc/nova-notification-feed.svg?style=flat-square)](https://scrutinizer-ci.com/g/coreproc/nova-notification-feed)
 [![Total Downloads](https://img.shields.io/packagist/dt/coreproc/nova-notification-feed.svg?style=flat-square)](https://packagist.org/packages/coreproc/nova-notification-feed)
 
-A Laravel Nova package that adds a notification feed in your Nova app and uses [Pusher](https://pusher.com) to receive and broadcast notifications.
+A Laravel Nova package that adds a notification feed in your Nova app and uses Laravel Echo and websockets to receive and broadcast notifications.
 
 ![](nova-notification-feed.gif)
 
