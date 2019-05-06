@@ -165,6 +165,7 @@ class TestNotification extends Notification
             'level' => $this->level,
             'message' => $this->message,
             'url' => 'https://coreproc.com',
+            'target' => '_self'
         ];
     }
 
@@ -181,13 +182,14 @@ class TestNotification extends Notification
 }
 ```
 
-Nova Notification Feed relies on having three variables passed in the `toArray()` method of the notification class: `level`, `message`, and `url`.
+Nova Notification Feed relies on having three variables passed in the `toArray()` method of the notification class: `level`, `message`, and `url`, and an optional `target` (default: `'_blank'`).
 
 Additionally, you can use the `NovaBroadcastMessage` class in the `toBroacast()` method to ensure that the format of the broadcast can be read by the frontend.
 
 ## Roadmap
 
 - Differentiate background color of a new notification
+- Check if the URL is an JSON representation of a route `{ name: 'index', params: {} }`
 - Better design?
 
 ## Changelog
