@@ -9,8 +9,7 @@ class NovaBroadcastMessage extends BroadcastMessage
     /**
      * Create a new message instance.
      *
-     * @param  array $data
-     * @return void
+     * @param array $data
      */
     public function __construct(array $data)
     {
@@ -19,7 +18,7 @@ class NovaBroadcastMessage extends BroadcastMessage
         $this->data = [
             'data' => $data,
             'read_at' => null,
-            'created_at' => now(),
+            'created_at' => now()->toDate(),
         ];
     }
 }
