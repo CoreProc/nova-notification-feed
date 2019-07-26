@@ -10,6 +10,7 @@ class NovaBroadcastMessage extends BroadcastMessage
      * Create a new message instance.
      *
      * @param array $data
+     * @return void
      */
     public function __construct(array $data)
     {
