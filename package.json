@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "vue": "^2.5.0",
-        "vue-infinite-loading": "^2.4.3"
+        "vue-infinite-loading": "^2.4.3",
+        "vue-native-notification": "^1.0.5"
     }
 }
