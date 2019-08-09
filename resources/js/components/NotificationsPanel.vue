@@ -48,7 +48,9 @@
               $state.loaded()
             }
           } else {
-            $state.complete()
+            if($state !== undefined) {
+              $state.complete()
+            }
           }
           // Assign current page just for redundancy's sake
           this.currentPage = response.data.meta.current_page
