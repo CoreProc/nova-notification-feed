@@ -165,6 +165,8 @@ class TestNotification extends Notification
             'level' => $this->level,
             'message' => $this->message,
             'url' => 'https://coreproc.com',
+            // vue router
+            'url' => ['name' => 'my-route', 'params' => [...]],
             // optional parameters
             'target' => '_self'
             'asHtml' => true,
@@ -191,7 +193,7 @@ class TestNotification extends Notification
 Nova Notification Feed relies on having three variables passed in the `toArray()` method of the notification class: `level`, `message`, and `url`.
 
 Optional Paramerters:
-- `target` (default: `'_blank'`) - sets link target
+- `target` (default: `'_router'`) - sets link target (`_blank, _self, _router`), vue router supported for links or objects
 - `asHtml` (default: `false`) - displays rendered HTML in message
 - `browser['title']` (`required`) - title of browser notification
 - `browser['body']` - notification body as in https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification#Parameters
@@ -204,7 +206,7 @@ Additionally, you can use the `NovaBroadcastMessage` class in the `toBroacast()`
 ## Roadmap
 
 - ~~Differentiate background color of a new notification~~
-- Check if the URL is an JSON representation of a route `{ name: 'index', params: {} }`
+- ~~Check if the URL is an JSON representation of a route `{ name: 'index', params: {} }`~~
 - Better design?
 
 ## Changelog

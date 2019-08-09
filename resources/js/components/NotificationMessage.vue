@@ -44,11 +44,15 @@ export default {
     methods: {
         handleClick() {
             if (this.notification.data.url) {
-                let win = window.open(this.notification.data.url,
-                    this.notification.data.target || '_blank')
-
-                if (win) {
-                    win.focus()
+                var data = this.notification.data
+                if ((!data.hasOwnProperty('target') || data.target === '_router') && this.$router.resolve(data.url).resolved.matched.length > 0) {
+                    this.$router.push(data.url)
+                } else {
+                    let win = window.open(this.notification.data.url,
+                        this.notification.data.target || '_blank')
+                    if (win) {
+                        win.focus()
+                    }
                 }
             }
         }
