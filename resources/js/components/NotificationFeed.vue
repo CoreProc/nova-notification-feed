@@ -14,6 +14,9 @@
         @showUnreadNotificationCount="showUnreadNotificationCount"
         @incrementUnreadCount="incrementUnreadCount"
         v-bind:broadcast-on="this.broadcastOn">
+          <template v-slot="{ notification }">
+              <slot :notification="notification"></slot>
+          </template>
       </notifications-panel>
     </div>
   </div>

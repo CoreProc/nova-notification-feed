@@ -5,9 +5,9 @@
         Close
       </div>
     </div>
-    <div class="px-4 border-b border-80 overflow-y-scroll h-full">
+    <div class="px-4 border-b border-80 overflow-y-auto h-full">
       <div v-for="notification in notifications">
-        <notification-message :notification="notification"></notification-message>
+          <slot :notification="notification"></slot>
       </div>
       <infinite-loading @infinite="getNotifications"></infinite-loading>
     </div>
