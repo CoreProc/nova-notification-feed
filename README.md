@@ -108,8 +108,10 @@ Add these two lines to the layout template:
   ...
 ```
 
+You should now be able to see the notification bell on the top right of your Nova UI.
+
 ## Custom template
-Sometimes the default notification template don't meet your requirement. In that case you can create your own partial and define your own template there
+Sometimes the default notification template does not meet your requirements. In that case you can create your own partial with your own template
 ```
 // file: resources/views/custom-nova-notification-feed.blade.php
 
@@ -127,8 +129,6 @@ Sometimes the default notification template don't meet your requirement. In that
 </notification-feed>
 
 ```
-
-You should now be able to see the notification bell on the top right of your Nova UI.
 
 ## Usage
 
