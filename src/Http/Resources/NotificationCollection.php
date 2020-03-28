@@ -3,6 +3,7 @@
 namespace Coreproc\NovaNotificationFeed\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Team;
 
 class NotificationCollection extends ResourceCollection
 {
@@ -23,9 +24,10 @@ class NotificationCollection extends ResourceCollection
 
     public function with($request)
     {
+	$team = Team::where('id', request()->user()->current_team_id)->first();
         return [
             'meta' => [
-                'unread_count' => request()->user()->notifications()
+                'unread_count' => $team->notifications()
                     ->whereNull('read_at')
                     ->count(),
             ],

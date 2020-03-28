@@ -65,7 +65,17 @@
             this.notifications.unshift(notification)
             // Show a toast
             this.$toasted.show(notification.data.message, {type: notification.data.level})
-          })
+          });
+        const team_id = Nova.config.user.current_team_id;
+        window.Echo.private(`App.Team.` + team_id)
+          .notification((notification) => {
+            // Increment the unread count
+            this.$emit('incrementUnreadCount')
+            // Add the notification to the top
+            this.notifications.unshift(notification)
+            // Show a toast
+            this.$toasted.show(notification.data.message, {type: notification.data.level})
+          });
       }
     },
     created () {

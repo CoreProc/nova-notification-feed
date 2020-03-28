@@ -23,7 +23,9 @@ class NovaNotificationFeedServiceProvider extends ServiceProvider
         });
 
         Nova::serving(function (ServingNova $event) {
-            //
+            Nova::provideToScript([
+                'user' => $event->request->user()->toArray(),
+            ]);
         });
 
         // Add js css by default
