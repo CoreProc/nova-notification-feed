@@ -89,11 +89,11 @@
   .notifications-panel {
     z-index: 999;
     position: fixed !important;
-    right: 0;
+    right: -20px;
     top: 0;
     width: 340px;
     height: 100%;
-    background-color: #536170;
+    background-image: linear-gradient(0deg, #000000 0%, #141414 100%);
     padding-bottom: 70px;
   }
 

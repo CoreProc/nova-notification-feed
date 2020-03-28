@@ -9,8 +9,8 @@ class NotificationsController
 {
     public function index()
     {
-	$team = Team::where('id', request()->user()->current_team_id)->first();
-	$notifications = $team->notifications()->orderByDesc('created_at');
+      	$team = Team::where('id', request()->user()->current_team_id)->first();
+      	$notifications = $team->notifications()->orderByDesc('created_at');
         /* $notifications = request()->user()->notifications()
             ->orderByDesc('created_at');
         */

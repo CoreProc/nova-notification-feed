@@ -24,7 +24,7 @@ class NotificationCollection extends ResourceCollection
 
     public function with($request)
     {
-	$team = Team::where('id', request()->user()->current_team_id)->first();
+        $team = Team::where('id', request()->user()->current_team_id)->first();
         return [
             'meta' => [
                 'unread_count' => $team->notifications()
