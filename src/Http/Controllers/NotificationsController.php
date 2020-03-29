@@ -9,11 +9,11 @@ class NotificationsController
 {
     public function index()
     {
-      	$team = Team::where('id', request()->user()->current_team_id)->first();
-      	$notifications = $team->notifications()->orderByDesc('created_at');
-        /* $notifications = request()->user()->notifications()
-            ->orderByDesc('created_at');
-        */
+      	/* $team = Team::where('id', request()->user()->current_team_id)->first();
+      	$notifications = $team->notifications()->orderByDesc('created_at'); */
+        $notifications = request()->user()->notifications()
+                                          ->orderByDesc('created_at');
+
         $only = config('nova_notifications.only', []);
 
         if (! empty($only)) {
@@ -22,8 +22,8 @@ class NotificationsController
 
         if (request()->get('mark_as_read', false)) {
             // Mark notifications as read
-            // request()->user()->unreadNotifications->markAsRead();
-            $team->unreadNotifications->markAsRead();
+            request()->user()->unreadNotifications->markAsRead();
+            // $team->unreadNotifications->markAsRead();
         }
 
         return new NotificationCollection($notifications->paginate());
