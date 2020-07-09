@@ -22,6 +22,12 @@ class NotificationsController
             request()->user()->unreadNotifications->markAsRead();
         }
 
+        $userBrands = request()->user()->getBrands()->pluck('id');
+        $notifications->where(function ($builder) use ($userBrands) {
+            $builder->whereIn('brand_id', $userBrands);
+            $builder->orWhere('brand_id', '=', null);
+        });
+
         return new NotificationCollection($notifications->paginate());
     }
 }
