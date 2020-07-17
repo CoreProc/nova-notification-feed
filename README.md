@@ -103,12 +103,32 @@ Add these two lines to the layout template:
     @include('nova::partials.user')
   </dropdown>
 
-  @include('nova_notification_feed::notification_feed') <!-- AND THIS LINE HERE -->
+  @include('nova_notification_feed::notification_feed') <!-- AND THIS LINE HERE OR INCLUDE YOUR CUSTOM PARTIAL INSTEAD -->
   
   ...
 ```
 
 You should now be able to see the notification bell on the top right of your Nova UI.
+
+## Custom template
+Sometimes the default notification template does not meet your requirements. In that case you can create your own partial with your own template
+```
+// file: resources/views/custom-nova-notification-feed.blade.php
+
+<notification-feed>
+    <template v-slot="{ notification }">
+        <notification-message :notification="notification" inline-template>
+            <a class="notification table mt-4 table-fixed w-full" :href="notification.data.url">
+                <div class="table-cell w-full">
+                    <p v-html="notification.data.message"></p>
+                    <span class="text-sm text-70">@{{ notification.created_at | fromNow }}</span>
+                </div>
+            </a>
+        </notification-message>
+    </template>
+</notification-feed>
+
+```
 
 ## Usage
 
