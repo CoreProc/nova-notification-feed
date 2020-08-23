@@ -10,7 +10,7 @@ A Laravel Nova package that adds a notification feed in your Nova app and uses L
 
 ## Installation
 
-You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
+You can install the package into a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
 ```bash
 composer require coreproc/nova-notification-feed
@@ -25,7 +25,7 @@ Here are the suggested options for broadcasting/receiving using websockets:
 - [Laravel Websockets](https://docs.beyondco.de/laravel-websockets/)
 - [Laravel Echo Server](https://github.com/tlaverdure/laravel-echo-server)
 
-Make sure that you already have any of these options set up and prepare your Laravel project to use it for broadcasting notifications. 
+Make sure that you already have any of these options set up and prepare your Laravel project to use it for broadcasting notifications.
 
 You can find instructions about broadcasting in Laravel using the [official documentation](https://laravel.com/docs/5.7/broadcasting).
 
@@ -64,9 +64,9 @@ Receiving notifications will depend on your `User` model having the `Notifiable`
 class User extends Authenticatable
 {
     use Notifiable;
-    
+
     ...
-    
+
     /**
      * The channels the user receives notification broadcasts on.
      *
@@ -92,19 +92,19 @@ Add these two lines to the layout template:
   <meta charset="utf-8">
   <meta name="viewport" content="width=1280">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  
+
   @include('nova-echo::meta') <!-- INCLUDE THIS LINE HERE -->
-  
+
   <title>
-  
+
   ...
-  
+
   <dropdown class="ml-auto h-9 flex items-center dropdown-right">
     @include('nova::partials.user')
   </dropdown>
 
   @include('nova_notification_feed::notification_feed') <!-- AND THIS LINE HERE -->
-  
+
   ...
 ```
 
@@ -184,7 +184,7 @@ class TestNotification extends Notification
 
 Nova Notification Feed relies on having three variables passed in the `toArray()` method of the notification class: `level`, `message`, and `url`, and an optional `target` (default: `'_blank'`).
 
-Additionally, you can use the `NovaBroadcastMessage` class in the `toBroacast()` method to ensure that the format of the broadcast can be read by the frontend.
+Additionally, you can use the `NovaBroadcastMessage` class in the `toBroadcast()` method to ensure that the format of the broadcast can be read by the frontend.
 
 ## Roadmap
 
@@ -202,7 +202,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email chris.bautista@coreproc.ph instead of using the issue tracker.
+If you discover any security-related issues, please email chris.bautista@coreproc.ph instead of using the issue tracker.
 
 ## Credits
 
@@ -213,7 +213,7 @@ If you discover any security related issues, please email chris.bautista@corepro
 CoreProc is a software development company that provides software development services to startups, digital/ad agencies, and enterprises.
 
 Learn more about us on our [website](https://coreproc.com).
- 
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
