@@ -63,8 +63,24 @@
             this.$emit('incrementUnreadCount')
             // Add the notification to the top
             this.notifications.unshift(notification)
+            let toastOptions = {type: notification.data.level};
+
+            // add "link" to the toast notification
+            if (notification.data.url) {
+              toastOptions['action'] = {
+                text: notification.data.url_name || 'link',
+                onClick: (e, toastObject) => {
+                  toastObject.goAway(0);
+                  let win = window.open(notification.data.url,
+                          notification.data.target || '_blank')
+                  if (win) {
+                    win.focus()
+                  }
+                }
+              };
+            }
             // Show a toast
-            this.$toasted.show(notification.data.message, {type: notification.data.level})
+            this.$toasted.show(notification.data.message, toastOptions)            
           })
       }
     },
