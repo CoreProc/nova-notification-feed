@@ -53,7 +53,7 @@ PUSHER_APP_CLUSTER=xxx
 You will also need to ensure that you have added an authorization broadcast route in `routes/channels.php`:
 
 ```php
-Broadcast::channel('App.User.{id}', function ($user, $id) {
+Broadcast::channel('users.{id}', function ($user, $id) {
     return (int)$user->id === (int)$id;
 });
 ```
