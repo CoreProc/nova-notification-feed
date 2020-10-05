@@ -10,7 +10,7 @@ A Laravel Nova package that adds a notification feed in your Nova app and uses L
 
 ## Installation
 
-You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
+You can install the package into a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
 ```bash
 composer require coreproc/nova-notification-feed
@@ -184,7 +184,7 @@ class TestNotification extends Notification
 
 Nova Notification Feed relies on having three variables passed in the `toArray()` method of the notification class: `level`, `message`, and `url`, and an optional `target` (default: `'_blank'`).
 
-Additionally, you can use the `NovaBroadcastMessage` class in the `toBroacast()` method to ensure that the format of the broadcast can be read by the frontend.
+Additionally, you can use the `NovaBroadcastMessage` class in the `toBroadcast()` method to ensure that the format of the broadcast can be read by the frontend.
 
 ## Roadmap
 
@@ -202,7 +202,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email chris.bautista@coreproc.ph instead of using the issue tracker.
+If you discover any security-related issues, please email chris.bautista@coreproc.ph instead of using the issue tracker.
 
 ## Credits
 
